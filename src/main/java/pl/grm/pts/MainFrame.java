@@ -12,16 +12,22 @@ import pl.grm.pts.panels.*;
 public class MainFrame extends JFrame {
 	private static final long			serialVersionUID	= 1L;
 	private HashMap<TabType, JPanel>	tabs				= new HashMap<TabType, JPanel>();
-	public static int					HEIGHT				= 800, WIDTH = 600;
-	public static String				TITLE				= "PTS Calc";
+	public static int					SET_HEIGHT			= 800, SET_WIDTH = 600;
+	public static String				SET_TITLE			= "PTS Calc";
 	private JPanel						contentPane;
 	private CalcCore					calcCore;
-	private JButton						dBConvertBtn;
+	private JButton						buttondBConvert;
 	private JTabbedPane					tabbedPane;
-	private JButton						button_1;
+	private JButton						buttonHistogram;
 	private JButton						button_3;
 	private JButton						button_2;
 	private JButton						button;
+	private JMenuBar					menuBar;
+	private JMenu						fileMenu;
+	private JMenuItem					exitMenuItem;
+	private JLayeredPane				layeredPane;
+	private JMenu						helpMenu;
+	private JMenuItem					aboutMenuItem;
 	
 	/**
 	 * Create the frame.
@@ -30,9 +36,9 @@ public class MainFrame extends JFrame {
 	 */
 	public MainFrame(CalcCore calcCore) {
 		this.calcCore = calcCore;
-		this.setTitle(TITLE);
+		this.setTitle(SET_TITLE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 100, WIDTH, HEIGHT);
+		setBounds(200, 100, SET_WIDTH, SET_HEIGHT);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -40,42 +46,74 @@ public class MainFrame extends JFrame {
 		
 		JPanel topPanel = new JPanel();
 		contentPane.add(topPanel, BorderLayout.NORTH);
+		topPanel.setLayout(new BorderLayout(0, 0));
 		
-		dBConvertBtn = new JButton("Konwertuj dB");
-		dBConvertBtn.addActionListener(new ActionListener() {
+		menuBar = new JMenuBar();
+		topPanel.add(menuBar, BorderLayout.NORTH);
+		
+		fileMenu = new JMenu("File");
+		menuBar.add(fileMenu);
+		
+		exitMenuItem = new JMenuItem("Exit");
+		fileMenu.add(exitMenuItem);
+		
+		helpMenu = new JMenu("Help");
+		menuBar.add(helpMenu);
+		
+		aboutMenuItem = new JMenuItem("About ...");
+		helpMenu.add(aboutMenuItem);
+		
+		layeredPane = new JLayeredPane();
+		topPanel.add(layeredPane);
+		layeredPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		buttondBConvert = new JButton("Konwertuj dB");
+		buttondBConvert.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				addTab(TabType.DBCONVERT);
 			}
 		});
-		topPanel.add(dBConvertBtn);
+		layeredPane.add(buttondBConvert);
 		
-		button_1 = new JButton("New button");
-		topPanel.add(button_1);
+		buttonHistogram = new JButton("Histogram");
+		buttonHistogram.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addTab(TabType.HISTOGRAM);
+			}
+		});
+		layeredPane.add(buttonHistogram);
 		
 		button_3 = new JButton("New button");
-		topPanel.add(button_3);
+		layeredPane.add(button_3);
 		
 		button_2 = new JButton("New button");
-		topPanel.add(button_2);
+		layeredPane.add(button_2);
 		
 		button = new JButton("New button");
-		topPanel.add(button);
+		layeredPane.add(button);
 		
 		tabbedPane = new ClosableTabbedPane();
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
 	
 	protected void addTab(TabType tabType) {
+		JPanel tab = null;
 		switch (tabType) {
 			case DBCONVERT :
-				DBConverter tab = new DBConverter();
-				tabs.put(tabType, tab);
-				tabbedPane.addTab("Konwersja dB", tab);
+				tab = new DBConverter();
+				
 				break;
+			case HISTOGRAM :
+				tab = new Histogram();
 			default :
 				break;
-		
+		}
+		if (tab != null) {
+			tabs.put(tabType, tab);
+			tabbedPane.addTab(tab.getName(), tab);
+			tabbedPane.setSelectedComponent(tab);
 		}
 	}
 	

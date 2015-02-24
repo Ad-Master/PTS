@@ -2,6 +2,9 @@ package pl.grm.pts;
 
 import java.awt.*;
 
+import javax.swing.*;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 public class Main {
 	
 	public static void main(String[] args) {
@@ -11,6 +14,17 @@ public class Main {
 			public void run() {
 				try {
 					MainFrame mainFrame = new MainFrame(calcCore);
+					try {
+						for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+							if ("Metal".equals(info.getName())) {
+								UIManager.setLookAndFeel(info.getClassName());
+								break;
+							}
+						}
+					}
+					catch (Exception e) {
+						e.printStackTrace();
+					}
 					mainFrame.setVisible(true);
 				}
 				catch (Exception e) {
