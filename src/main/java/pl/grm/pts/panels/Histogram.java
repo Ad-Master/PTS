@@ -4,9 +4,10 @@ import java.awt.*;
 
 import javax.swing.*;
 
-public class Histogram extends JPanel {
+import pl.grm.pts.*;
+
+public class Histogram extends JPanel implements Tab {
 	public Histogram() {
-		this.setName("Histogram");
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel topPanel = new JPanel();

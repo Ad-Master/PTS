@@ -7,27 +7,25 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import pl.grm.pts.panels.*;
-
 public class MainFrame extends JFrame {
-	private static final long			serialVersionUID	= 1L;
-	private HashMap<TabType, JPanel>	tabs				= new HashMap<TabType, JPanel>();
-	public static int					SET_HEIGHT			= 800, SET_WIDTH = 600;
-	public static String				SET_TITLE			= "PTS Calc";
-	private JPanel						contentPane;
-	private CalcCore					calcCore;
-	private JButton						buttondBConvert;
-	private JTabbedPane					tabbedPane;
-	private JButton						buttonHistogram;
-	private JButton						button_3;
-	private JButton						button_2;
-	private JButton						button;
-	private JMenuBar					menuBar;
-	private JMenu						fileMenu;
-	private JMenuItem					exitMenuItem;
-	private JLayeredPane				layeredPane;
-	private JMenu						helpMenu;
-	private JMenuItem					aboutMenuItem;
+	private static final long		serialVersionUID	= 1L;
+	private HashMap<TabType, Tab>	tabs				= new HashMap<TabType, Tab>();
+	public static int				SET_HEIGHT			= 800, SET_WIDTH = 600;
+	public static String			SET_TITLE			= "PTS Calc";
+	private JPanel					contentPane;
+	private CalcCore				calcCore;
+	private JButton					buttondBConvert;
+	private JTabbedPane				tabbedPane;
+	private JButton					buttonHistogram;
+	private JButton					button_3;
+	private JButton					button_2;
+	private JButton					button;
+	private JMenuBar				menuBar;
+	private JMenu					fileMenu;
+	private JMenuItem				exitMenuItem;
+	private JLayeredPane			layeredPane;
+	private JMenu					helpMenu;
+	private JMenuItem				aboutMenuItem;
 	
 	/**
 	 * Create the frame.
@@ -99,21 +97,11 @@ public class MainFrame extends JFrame {
 	}
 	
 	protected void addTab(TabType tabType) {
-		JPanel tab = null;
-		switch (tabType) {
-			case DBCONVERT :
-				tab = new DBConverter();
-				
-				break;
-			case HISTOGRAM :
-				tab = new Histogram();
-			default :
-				break;
-		}
+		Tab tab = tabType.getTab();
 		if (tab != null) {
 			tabs.put(tabType, tab);
-			tabbedPane.addTab(tab.getName(), tab);
-			tabbedPane.setSelectedComponent(tab);
+			tabbedPane.addTab(tabType.getName(), (JPanel) tab);
+			tabbedPane.setSelectedComponent((JPanel) tab);
 		}
 	}
 	

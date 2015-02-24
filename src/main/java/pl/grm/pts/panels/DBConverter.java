@@ -5,13 +5,14 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class DBConverter extends JPanel {
+import pl.grm.pts.*;
+
+public class DBConverter extends JPanel implements Tab {
 	private static final long	serialVersionUID	= 1L;
 	private JTextField			textField_2;
 	private JTextField			textField_1;
 	
 	public DBConverter() {
-		this.setName("Konwersja dB");
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_2 = new JTextField();
