@@ -2,7 +2,7 @@ package pl.grm.pts;
 
 import javax.swing.*;
 
-import pl.grm.pts.panels.*;
+import pl.grm.pts.tabs.*;
 
 public enum TabType {
 	DBCONVERT(

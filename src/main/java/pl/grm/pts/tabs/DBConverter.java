@@ -1,4 +1,4 @@
-package pl.grm.pts.panels;
+package pl.grm.pts.tabs;
 
 import java.awt.*;
 import java.awt.event.*;
