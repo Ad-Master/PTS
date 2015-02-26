@@ -9,11 +9,12 @@ public class Main {
 	
 	public static void main(String[] args) {
 		CalcCore calcCore = new CalcCore();
+		CalcCore.instance = calcCore;
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					MainFrame mainFrame = new MainFrame(calcCore);
+					MainFrame mainFrame = new MainFrame();
 					try {
 						for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 							if ("Metal".equals(info.getName())) {
@@ -33,5 +34,4 @@ public class Main {
 			}
 		});
 	}
-	
 }

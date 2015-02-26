@@ -1,6 +1,7 @@
 package pl.grm.pts.tabs;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.beans.*;
 import java.util.*;
 import java.util.concurrent.*;
@@ -10,6 +11,7 @@ import javax.swing.event.*;
 import javax.swing.text.*;
 
 import pl.grm.pts.*;
+import pl.grm.pts.core.*;
 
 public class SignalAnalysis extends JPanel implements Tab {
 	private static final long						serialVersionUID	= 1L;
@@ -17,8 +19,10 @@ public class SignalAnalysis extends JPanel implements Tab {
 	private JPanel									panelSamples;
 	private ConcurrentHashMap<Integer, JTextField>	signalSamplesFields	= new ConcurrentHashMap<Integer, JTextField>();
 	private JTextField								tFAvargVal;
+	private CalcCore								calcCore;
 	
 	public SignalAnalysis() {
+		this.calcCore = CalcCore.instance;
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel topPanel = new JPanel();
@@ -52,6 +56,23 @@ public class SignalAnalysis extends JPanel implements Tab {
 		
 		JPanel sidePanel = new JPanel();
 		add(sidePanel, BorderLayout.EAST);
+		
+		JButton btnCalc = new JButton("Oblicz");
+		btnCalc.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Thread(() -> {
+					try {
+						calcCore.calcSignalAnalysis(SignalAnalysis.this);
+					}
+					catch (Exception e1) {
+						JOptionPane.showInternalMessageDialog(SignalAnalysis.this.getParent()
+								.getParent(), e1.getMessage());
+					}
+				}).start();
+			}
+		});
+		sidePanel.add(btnCalc);
 		
 		JScrollPane centerScrollPane = new JScrollPane();
 		add(centerScrollPane, BorderLayout.CENTER);
@@ -160,5 +181,15 @@ public class SignalAnalysis extends JPanel implements Tab {
 		Document d = text.getDocument();
 		if (d != null)
 			d.addDocumentListener(dl);
+	}
+	
+	public ConcurrentHashMap<Integer, JTextField> getSamples() {
+		return signalSamplesFields;
+	}
+	
+	public ConcurrentHashMap<SignalDataType, JTextField> getOutputs() {
+		ConcurrentHashMap<SignalDataType, JTextField> outputs = new ConcurrentHashMap<SignalDataType, JTextField>();
+		outputs.put(SignalDataType.DIRECT_CURRENT, tFAvargVal);
+		return outputs;
 	}
 }

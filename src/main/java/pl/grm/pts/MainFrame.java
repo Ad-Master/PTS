@@ -13,7 +13,6 @@ public class MainFrame extends JFrame {
 	public static int				SET_HEIGHT			= 800, SET_WIDTH = 600;
 	public static String			SET_TITLE			= "PTS Calc";
 	private JPanel					contentPane;
-	private CalcCore				calcCore;
 	private JButton					buttondBConvert;
 	private JTabbedPane				tabbedPane;
 	private JButton					buttonHistogram;
@@ -29,11 +28,8 @@ public class MainFrame extends JFrame {
 	
 	/**
 	 * Create the frame.
-	 * 
-	 * @param calcCore
 	 */
-	public MainFrame(CalcCore calcCore) {
-		this.calcCore = calcCore;
+	public MainFrame() {
 		this.setTitle(SET_TITLE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, SET_WIDTH, SET_HEIGHT);
