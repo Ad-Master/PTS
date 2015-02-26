@@ -13,7 +13,10 @@ public enum TabType {
 			Histogram.class) ,
 	SIGNAL_ANALYSIS(
 			"Analiza sygna³u",
-			SignalAnalysis.class);
+			SignalAnalysis.class) ,
+	SIGNAL_IN_SIGNAL(
+			"Sygna³ w sygnale",
+			SignalInSignal.class);
 	
 	private String					name;
 	private Class<? extends Tab>	clazz;

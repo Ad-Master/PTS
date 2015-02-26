@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
 	private JTabbedPane				tabbedPane;
 	private JButton					buttonHistogram;
 	private JButton					buttonSignalAnalysis;
-	private JButton					button_2;
+	private JButton					buttonSignalInSignal;
 	private JButton					button;
 	private JMenuBar				menuBar;
 	private JMenu					fileMenu;
@@ -88,8 +88,14 @@ public class MainFrame extends JFrame {
 		});
 		layeredPane.add(buttonSignalAnalysis);
 		
-		button_2 = new JButton("New button");
-		layeredPane.add(button_2);
+		buttonSignalInSignal = new JButton("Sygna³ w sygnale");
+		buttonSignalInSignal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addTab(TabType.SIGNAL_IN_SIGNAL);
+			}
+		});
+		layeredPane.add(buttonSignalInSignal);
 		
 		button = new JButton("New button");
 		layeredPane.add(button);
