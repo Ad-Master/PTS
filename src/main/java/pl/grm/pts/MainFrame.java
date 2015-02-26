@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
 	private JButton					buttondBConvert;
 	private JTabbedPane				tabbedPane;
 	private JButton					buttonHistogram;
-	private JButton					button_3;
+	private JButton					buttonSignalAnalysis;
 	private JButton					button_2;
 	private JButton					button;
 	private JMenuBar				menuBar;
@@ -83,8 +83,14 @@ public class MainFrame extends JFrame {
 		});
 		layeredPane.add(buttonHistogram);
 		
-		button_3 = new JButton("New button");
-		layeredPane.add(button_3);
+		buttonSignalAnalysis = new JButton("Analiza sygna³u");
+		buttonSignalAnalysis.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addTab(TabType.SIGNAL_ANALYSIS);
+			}
+		});
+		layeredPane.add(buttonSignalAnalysis);
 		
 		button_2 = new JButton("New button");
 		layeredPane.add(button_2);

@@ -10,7 +10,10 @@ public enum TabType {
 			DBConverter.class) ,
 	HISTOGRAM(
 			"Histogram",
-			Histogram.class);
+			Histogram.class) ,
+	SIGNAL_ANALYSIS(
+			"Analiza sygna³u",
+			SignalAnalysis.class);
 	
 	private String					name;
 	private Class<? extends Tab>	clazz;
