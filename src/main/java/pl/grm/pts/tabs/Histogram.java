@@ -106,8 +106,8 @@ public class Histogram extends JPanel implements Tab {
 				return false;
 			}
 			if (columnsCount > 10 || rowsCount > 10) { return false; }
-			table_1 = new Table(rowsCount, columnsCount, 1);
-			table_2 = new Table(rowsCount, columnsCount, 1);
+			table_1 = new Table(rowsCount, columnsCount, 1, true);
+			table_2 = new Table(rowsCount, columnsCount, 1, true);
 			return true;
 		}
 		
@@ -142,15 +142,23 @@ public class Histogram extends JPanel implements Tab {
 			SortedSet<Integer> set2 = table_2.getValues();
 			int rCount = set1.size();
 			int cCount = set2.size();
-			Table table = new Table(rCount, cCount, 0);
-			for (int c = 1; c <= table_1.getColumnsCount(); c++) {
-				for (int r = 1; r <= table_1.getRowsCount(); r++) {
-					int v1 = table_1.getValueFrom(r, c);
-					int v2 = table_2.getValueFrom(r, c);
-					int currentValue = table.getValueFrom(v1, v2);
-					table.setValueInCell(currentValue++, v1, v2);
+			Table table = new Table(rCount, cCount, 0, false);
+			table.setHeaders(set1, set2);
+			int startIndex = table_1.getStartIndex();
+			for (int r = startIndex; r <= table_1.getRowsCount() + startIndex - 1; r++) {
+				for (int c = startIndex; c <= table_1.getColumnsCount() + startIndex - 1; c++) {
+					try {
+						int v1 = table_1.getValueFrom(r, c);
+						int v2 = table_2.getValueFrom(r, c);
+						int currentValue = table.getValueFrom(v1, v2);
+						table.setValueInCell(currentValue + 1, v1, v2);
+					}
+					catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
+			table.addRowsToPanel();
 			return table;
 		}
 		

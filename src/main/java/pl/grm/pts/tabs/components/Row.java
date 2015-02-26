@@ -6,18 +6,19 @@ import java.util.Map.Entry;
 
 import javax.swing.*;
 
-public class Row extends JPanel {
-	private static final long			serialVersionUID	= 1L;
+public class Row {
 	private HashMap<Integer, Component>	cells;
 	private int							rowIndex;
 	private int							cellsCount;
 	private int							startIndex;
+	private SortedSet<Integer>			columnHeaders;
 	
-	public Row(int rowIndex, int cellsCount, int startIndex, boolean fillUp) {
+	public Row(int rowIndex, int cellsCount, int startIndex, boolean fillUp,
+			SortedSet<Integer> columnHeaders) {
 		this.rowIndex = rowIndex;
 		this.cellsCount = cellsCount;
 		this.startIndex = startIndex;
-		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		this.columnHeaders = columnHeaders;
 		cells = new HashMap<Integer, Component>();
 		if (fillUp) {
 			createEmptyRow();
@@ -26,7 +27,8 @@ public class Row extends JPanel {
 	
 	public void createEmptyRow() {
 		this.addCell(startIndex - 1, createRowHeader(rowIndex));
-		for (int columnIndex = startIndex; columnIndex < (cellsCount - 1 + startIndex); columnIndex++) {
+		for (Iterator<Integer> it = columnHeaders.iterator(); it.hasNext();) {
+			int columnIndex = it.next();
 			this.addCell(columnIndex, createTextFieldCell());
 		}
 	}
@@ -97,5 +99,26 @@ public class Row extends JPanel {
 			}
 		}
 		return count;
+	}
+	
+	public SortedSet<Integer> getValues() {
+		SortedSet<Integer> set = new TreeSet<Integer>();
+		for (Iterator<Entry<Integer, Component>> it = cells.entrySet().iterator(); it.hasNext();) {
+			Component comp = it.next().getValue();
+			String txt = "";
+			if (comp instanceof JTextField) {
+				JTextField tField = (JTextField) comp;
+				txt = tField.getText();
+				int value = 0;
+				try {
+					value = Integer.parseInt(txt);
+				}
+				catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+				set.add(value);
+			}
+		}
+		return set;
 	}
 }
