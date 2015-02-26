@@ -18,10 +18,23 @@ public class SignalAnalysis extends JPanel implements Tab {
 	private JTextField								tFSignalSamplesCount;
 	private JPanel									panelSamples;
 	private ConcurrentHashMap<Integer, JTextField>	signalSamplesFields	= new ConcurrentHashMap<Integer, JTextField>();
-	private JTextField								tFAvargVal;
+	private JTextField								tF_DC;
 	private CalcCore								calcCore;
+	private JTextField								tF_AC;
+	private JTextField								tF_Ec;
+	private JTextField								tF_E_Xi;
+	private JTextField								tF_EDC;
+	private JTextField								tF_EAC;
+	private JTextField								tF_PAvg;
+	private JTextField								tF_PAC;
+	private JTextField								tF_PDC;
+	private JTextField								tF_RMS;
+	private JTextField								tF_BSTD;
 	
 	public SignalAnalysis() {
+		FlowLayout flowLayout;
+		JLabel label;
+		JTextField jTextField;
 		this.calcCore = CalcCore.instance;
 		setLayout(new BorderLayout(0, 0));
 		
@@ -43,6 +56,8 @@ public class SignalAnalysis extends JPanel implements Tab {
 		panel_SampleCount.add(tFSignalSamplesCount);
 		
 		JPanel panel_Samples = new JPanel();
+		FlowLayout flowLayout_S = (FlowLayout) panel_Samples.getLayout();
+		flowLayout_S.setAlignment(FlowLayout.LEFT);
 		
 		JLabel lblPrbki = new JLabel("Pr\u00F3bki:");
 		panel_Samples.add(lblPrbki);
@@ -58,6 +73,7 @@ public class SignalAnalysis extends JPanel implements Tab {
 		add(sidePanel, BorderLayout.EAST);
 		
 		JButton btnCalc = new JButton("Oblicz");
+		sidePanel.add(btnCalc);
 		btnCalc.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -72,37 +88,156 @@ public class SignalAnalysis extends JPanel implements Tab {
 				}).start();
 			}
 		});
-		sidePanel.add(btnCalc);
 		
 		JScrollPane centerScrollPane = new JScrollPane();
 		add(centerScrollPane, BorderLayout.CENTER);
 		
 		JPanel mainPanel = new JPanel();
 		centerScrollPane.setViewportView(mainPanel);
-		mainPanel.setLayout(new GridLayout(8, 1, 0, 0));
+		mainPanel.setLayout(new GridLayout(15, 1, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) panel_1.getLayout();
+		flowLayout_1.setAlignment(FlowLayout.RIGHT);
 		mainPanel.add(panel_1);
 		
-		JLabel lbl_1 = new JLabel("Warto\u015Bc srednia sygnalu Xi=u=Xdc=");
+		JLabel lbl_1 = new JLabel("Warto\u015Bc srednia sygnalu X_i = u = X_DC =");
 		panel_1.add(lbl_1);
 		
-		tFAvargVal = new JTextField();
-		tFAvargVal.setEditable(false);
-		panel_1.add(tFAvargVal);
-		tFAvargVal.setColumns(10);
+		tF_DC = new JTextField();
+		tF_DC.setEditable(false);
+		tF_DC.setColumns(20);
+		panel_1.add(tF_DC);
 		
 		JPanel panel_2 = new JPanel();
+		FlowLayout flowLayout_2 = (FlowLayout) panel_2.getLayout();
+		flowLayout_2.setAlignment(FlowLayout.RIGHT);
 		mainPanel.add(panel_2);
 		
+		JLabel lbl_2 = new JLabel("Sk\u0142adowa przemienna AC X_AC = ");
+		panel_2.add(lbl_2);
+		
+		tF_AC = new JTextField();
+		tF_AC.setEditable(false);
+		tF_AC.setColumns(20);
+		panel_2.add(tF_AC);
+		
 		JPanel panel_3 = new JPanel();
+		FlowLayout flowLayout_3 = (FlowLayout) panel_3.getLayout();
+		flowLayout_3.setAlignment(FlowLayout.RIGHT);
 		mainPanel.add(panel_3);
 		
+		JLabel lbl_3 = new JLabel("Energia ca\u0142kowita E_c = ");
+		panel_3.add(lbl_3);
+		
+		tF_Ec = new JTextField();
+		tF_Ec.setEditable(false);
+		tF_Ec.setColumns(20);
+		panel_3.add(tF_Ec);
+		
 		JPanel panel_4 = new JPanel();
+		FlowLayout flowLayout_4 = (FlowLayout) panel_4.getLayout();
+		flowLayout_4.setAlignment(FlowLayout.RIGHT);
 		mainPanel.add(panel_4);
 		
+		JLabel lbl_4 = new JLabel("Energia pr\u00F3bek");
+		panel_4.add(lbl_4);
+		
+		tF_E_Xi = new JTextField();
+		tF_E_Xi.setEditable(false);
+		panel_4.add(tF_E_Xi);
+		tF_E_Xi.setColumns(20);
+		
 		JPanel panel_5 = new JPanel();
+		FlowLayout flowLayout_5 = (FlowLayout) panel_5.getLayout();
+		flowLayout_5.setAlignment(FlowLayout.RIGHT);
 		mainPanel.add(panel_5);
+		
+		JLabel lbl_5 = new JLabel("Energia DC");
+		panel_5.add(lbl_5);
+		
+		tF_EDC = new JTextField();
+		tF_EDC.setEditable(false);
+		panel_5.add(tF_EDC);
+		tF_EDC.setColumns(20);
+		
+		JPanel panel_6 = new JPanel();
+		FlowLayout flowLayout_6 = (FlowLayout) panel_6.getLayout();
+		flowLayout_6.setAlignment(FlowLayout.RIGHT);
+		mainPanel.add(panel_6);
+		
+		JLabel lbl_6 = new JLabel("Energia AC");
+		panel_6.add(lbl_6);
+		
+		tF_EAC = new JTextField();
+		tF_EAC.setEditable(false);
+		tF_EAC.setColumns(20);
+		panel_6.add(tF_EAC);
+		
+		JPanel panel_7 = new JPanel();
+		FlowLayout flowLayout_7 = (FlowLayout) panel_7.getLayout();
+		flowLayout_7.setAlignment(FlowLayout.RIGHT);
+		mainPanel.add(panel_7);
+		
+		JLabel lbl_7 = new JLabel("Moc \u015Brednia P_avg = ");
+		panel_7.add(lbl_7);
+		
+		tF_PAvg = new JTextField();
+		tF_PAvg.setEditable(false);
+		tF_PAvg.setColumns(20);
+		panel_7.add(tF_PAvg);
+		
+		JPanel panel_8 = new JPanel();
+		mainPanel.add(panel_8);
+		FlowLayout flowLayout_8 = (FlowLayout) panel_8.getLayout();
+		flowLayout_8.setAlignment(FlowLayout.RIGHT);
+		
+		JLabel lbl_8 = new JLabel("Moc AC P_AC = ");
+		panel_8.add(lbl_8);
+		
+		tF_PAC = new JTextField();
+		tF_PAC.setEditable(false);
+		tF_PAC.setColumns(20);
+		panel_8.add(tF_PAC);
+		
+		JPanel panel_9 = new JPanel();
+		FlowLayout flowLayout_9 = (FlowLayout) panel_9.getLayout();
+		flowLayout_9.setAlignment(FlowLayout.RIGHT);
+		mainPanel.add(panel_9);
+		
+		JLabel lbl_9 = new JLabel("Moc DC P_DC = ");
+		panel_9.add(lbl_9);
+		
+		tF_PDC = new JTextField();
+		tF_PDC.setEditable(false);
+		tF_PDC.setColumns(20);
+		panel_9.add(tF_PDC);
+		
+		JPanel panel_10 = new JPanel();
+		FlowLayout flowLayout_10 = (FlowLayout) panel_10.getLayout();
+		flowLayout_10.setAlignment(FlowLayout.RIGHT);
+		mainPanel.add(panel_10);
+		
+		JLabel lbl_10 = new JLabel("Wartosc skuteczna RMS X_RMS = ");
+		panel_10.add(lbl_10);
+		
+		tF_RMS = new JTextField();
+		tF_RMS.setEditable(false);
+		tF_RMS.setColumns(20);
+		panel_10.add(tF_RMS);
+		
+		JPanel panel_11 = new JPanel();
+		FlowLayout flowLayout_11 = (FlowLayout) panel_11.getLayout();
+		flowLayout_11.setAlignment(FlowLayout.RIGHT);
+		mainPanel.add(panel_11);
+		
+		JLabel lbl_11 = new JLabel("Odchylenie standardowe");
+		panel_11.add(lbl_11);
+		
+		tF_BSTD = new JTextField();
+		tF_BSTD.setEditable(false);
+		tF_BSTD.setColumns(20);
+		panel_11.add(tF_BSTD);
 		
 	}
 	
@@ -189,7 +324,17 @@ public class SignalAnalysis extends JPanel implements Tab {
 	
 	public ConcurrentHashMap<SignalDataType, JTextField> getOutputs() {
 		ConcurrentHashMap<SignalDataType, JTextField> outputs = new ConcurrentHashMap<SignalDataType, JTextField>();
-		outputs.put(SignalDataType.DIRECT_CURRENT, tFAvargVal);
+		outputs.put(SignalDataType.DIRECT_CURRENT, tF_DC);
+		outputs.put(SignalDataType.ALTERNATE_CURRENT, tF_AC);
+		outputs.put(SignalDataType.ENERGY_ALL, tF_Ec);
+		outputs.put(SignalDataType.ENERGY_Xi, tF_E_Xi);
+		outputs.put(SignalDataType.ENERGY_AC, tF_EAC);
+		outputs.put(SignalDataType.ENERGY_DC, tF_EDC);
+		outputs.put(SignalDataType.POWER_AVG, tF_PAvg);
+		outputs.put(SignalDataType.POWER_AC, tF_PAC);
+		outputs.put(SignalDataType.POWER_DC, tF_PDC);
+		outputs.put(SignalDataType.RMS, tF_RMS);
+		outputs.put(SignalDataType.BIAS_STD, tF_BSTD);
 		return outputs;
 	}
 }

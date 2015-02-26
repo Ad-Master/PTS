@@ -16,7 +16,7 @@ public class CalcCore {
 		this.signalAnalysisCore = new SignalAnalysisCore();
 	}
 	
-	public void calcSignalAnalysis(SignalAnalysis signalAnalysis) throws Exception {
+	public synchronized void calcSignalAnalysis(SignalAnalysis signalAnalysis) throws Exception {
 		ConcurrentHashMap<Integer, JTextField> samplesF = signalAnalysis.getSamples();
 		ConcurrentHashMap<SignalDataType, JTextField> signalOutputs = signalAnalysis.getOutputs();
 		ConcurrentHashMap<Integer, Double> samples = new ConcurrentHashMap<Integer, Double>();
