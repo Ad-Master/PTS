@@ -27,6 +27,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem				aboutMenuItem;
 	private JButton					buttonDFT;
 	private JScrollPane				scrollPane;
+	private JButton					buttonFFT;
 	
 	/**
 	 * Create the frame.
@@ -120,6 +121,15 @@ public class MainFrame extends JFrame {
 			}
 		});
 		buttonPane.add(buttonDFT);
+		
+		buttonFFT = new JButton("FFT");
+		buttonFFT.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addTab(TabType.FFT);
+			}
+		});
+		buttonPane.add(buttonFFT);
 		
 		tabbedPane = new ClosableTabbedPane();
 		contentPane.add(tabbedPane, BorderLayout.CENTER);

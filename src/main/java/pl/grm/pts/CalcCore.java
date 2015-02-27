@@ -60,7 +60,7 @@ public class CalcCore {
 		}
 	}
 	
-	public String calcDFT(String txt) {
+	public Vector<Complex> calcDFT(String txt) throws Exception {
 		SimpleVector vec = VectorUtils.toVector(txt);
 		float[] arr = vec.getValuesF();
 		Vector<Point> iVec = new Vector<Point>();
@@ -70,17 +70,8 @@ public class CalcCore {
 		}
 		dftCore.setSignal(iVec);
 		Vector<Complex> resultSignal = dftCore.getResultSignal();
-		String out = "For " + arr.length + " sampled input [";
-		for (float f : arr) {
-			out += f + " ";
-		}
-		out += "]\n";
-		Iterator<Complex> iterator = resultSignal.iterator();
-		while (iterator.hasNext()) {
-			Complex cx = iterator.next();
-			out += cx.toString() + "\n";
-		}
-		return out;
+		
+		return resultSignal;
 	}
 	
 }

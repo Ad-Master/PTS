@@ -97,6 +97,25 @@ public class Complex {
 	
 	@Override
 	public String toString() {
-		return this.real + (this.imaginary < 0 ? " " : " + ") + this.imaginary + "j";
+		String string = "";
+		if (this.real <= 0) {
+			if (this.real != 0) {
+				if (this.real < -0.00001) {
+					string += " - " + Math.abs(this.real) + " ";
+				}
+			}
+		} else if (this.real > 0.00001) {
+			string += this.real;
+		}
+		if (this.imaginary <= 0) {
+			if (this.imaginary != 0) {
+				if (this.imaginary < -0.00001) {
+					string += " - " + Math.abs(this.imaginary) + "j";
+				}
+			}
+		} else if (this.imaginary > 0.00001) {
+			string += " + " + this.imaginary + "j";
+		}
+		return string;
 	}
 }

@@ -22,7 +22,10 @@ public enum TabType {
 			HarmonicDistribution.class) ,
 	DFT(
 			"DFT",
-			DFT.class);
+			DFT.class) ,
+	FFT(
+			"FFT",
+			FFT.class);
 	
 	private String					name;
 	private Class<? extends Tab>	clazz;
