@@ -32,9 +32,6 @@ public class SignalAnalysis extends JPanel implements Tab {
 	private JTextField								tF_BSTD;
 	
 	public SignalAnalysis() {
-		FlowLayout flowLayout;
-		JLabel label;
-		JTextField jTextField;
 		this.calcCore = CalcCore.instance;
 		setLayout(new BorderLayout(0, 0));
 		

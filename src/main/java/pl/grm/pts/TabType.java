@@ -16,7 +16,13 @@ public enum TabType {
 			SignalAnalysis.class) ,
 	SIGNAL_IN_SIGNAL(
 			"Sygna³ w sygnale",
-			SignalInSignal.class);
+			SignalInSignal.class) ,
+	HARMONIC_DISTRIBUTION(
+			"Rozk³ad na harmoniczne",
+			HarmonicDistribution.class) ,
+	DFT(
+			"DFT",
+			DFT.class);
 	
 	private String					name;
 	private Class<? extends Tab>	clazz;

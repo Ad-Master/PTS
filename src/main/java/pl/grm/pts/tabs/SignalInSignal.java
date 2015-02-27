@@ -17,6 +17,8 @@ public class SignalInSignal extends JPanel implements Tab {
 	private JTextField			tF_p;
 	private JCheckBox			cB_on;
 	private JCheckBox			cB_og;
+	private JTextField			tF_EV;
+	private JTextField			tF_EW;
 	
 	public SignalInSignal() {
 		setLayout(new BorderLayout(0, 0));
@@ -57,8 +59,8 @@ public class SignalInSignal extends JPanel implements Tab {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (tglbtnVWW.isSelected()) {
-						
+					boolean side = tglbtnVWW.isSelected();
+					if (side) {
 						CalcCore.instance.calcSignalInSignal(tF_W.getText(), tF_V.getText(),
 								getOutputs());
 					} else {
@@ -101,12 +103,29 @@ public class SignalInSignal extends JPanel implements Tab {
 		mainPanel.add(panel_2);
 		
 		cB_og = new JCheckBox("Ortogonalne");
-		cB_og.setEnabled(false);
 		panel_2.add(cB_og);
 		
 		cB_on = new JCheckBox("Ortonormalne");
-		cB_on.setEnabled(false);
 		panel_2.add(cB_on);
+		
+		JPanel panel_3 = new JPanel();
+		mainPanel.add(panel_3);
+		
+		JLabel lblEv = new JLabel("E_V/ =");
+		panel_3.add(lblEv);
+		
+		tF_EV = new JTextField();
+		tF_EV.setEditable(false);
+		panel_3.add(tF_EV);
+		tF_EV.setColumns(10);
+		
+		JLabel lblEw = new JLabel("E_W/ = ");
+		panel_3.add(lblEw);
+		
+		tF_EW = new JTextField();
+		tF_EW.setEditable(false);
+		panel_3.add(tF_EW);
+		tF_EW.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
@@ -121,6 +140,9 @@ public class SignalInSignal extends JPanel implements Tab {
 		outputs.put("p", tF_p);
 		outputs.put("og", cB_og);
 		outputs.put("on", cB_on);
+		outputs.put("ev", tF_EV);
+		outputs.put("ew", tF_EW);
+		outputs.put("stateBtTg", tglbtnVWW);
 		return outputs;
 	}
 	

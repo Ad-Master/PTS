@@ -18,13 +18,15 @@ public class MainFrame extends JFrame {
 	private JButton					buttonHistogram;
 	private JButton					buttonSignalAnalysis;
 	private JButton					buttonSignalInSignal;
-	private JButton					button;
+	private JButton					buttonHarmDistribution;
 	private JMenuBar				menuBar;
 	private JMenu					fileMenu;
 	private JMenuItem				exitMenuItem;
-	private JLayeredPane			layeredPane;
+	private JPanel					buttonPane;
 	private JMenu					helpMenu;
 	private JMenuItem				aboutMenuItem;
+	private JButton					buttonDFT;
+	private JScrollPane				scrollPane;
 	
 	/**
 	 * Create the frame.
@@ -57,18 +59,22 @@ public class MainFrame extends JFrame {
 		aboutMenuItem = new JMenuItem("About ...");
 		helpMenu.add(aboutMenuItem);
 		
-		layeredPane = new JLayeredPane();
-		topPanel.add(layeredPane);
-		layeredPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		buttonPane = new JPanel();
+		buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		buttondBConvert = new JButton("Konwertuj dB");
+		scrollPane = new JScrollPane();
+		scrollPane.setViewportView(buttonPane);
+		scrollPane.setPreferredSize(new Dimension(600, 50));
+		topPanel.add(scrollPane, BorderLayout.SOUTH);
+		
+		buttondBConvert = new JButton("Konw. dB");
 		buttondBConvert.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				addTab(TabType.DBCONVERT);
 			}
 		});
-		layeredPane.add(buttondBConvert);
+		buttonPane.add(buttondBConvert);
 		
 		buttonHistogram = new JButton("Histogram");
 		buttonHistogram.addActionListener(new ActionListener() {
@@ -77,28 +83,43 @@ public class MainFrame extends JFrame {
 				addTab(TabType.HISTOGRAM);
 			}
 		});
-		layeredPane.add(buttonHistogram);
+		buttonPane.add(buttonHistogram);
 		
-		buttonSignalAnalysis = new JButton("Analiza sygna³u");
+		buttonSignalAnalysis = new JButton("An. sygna³u");
 		buttonSignalAnalysis.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				addTab(TabType.SIGNAL_ANALYSIS);
 			}
 		});
-		layeredPane.add(buttonSignalAnalysis);
+		buttonPane.add(buttonSignalAnalysis);
 		
-		buttonSignalInSignal = new JButton("Sygna³ w sygnale");
+		buttonSignalInSignal = new JButton("Sygna³ w sygn.");
 		buttonSignalInSignal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				addTab(TabType.SIGNAL_IN_SIGNAL);
 			}
 		});
-		layeredPane.add(buttonSignalInSignal);
+		buttonPane.add(buttonSignalInSignal);
 		
-		button = new JButton("New button");
-		layeredPane.add(button);
+		buttonHarmDistribution = new JButton("Rozk³. na harm.");
+		buttonHarmDistribution.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addTab(TabType.HARMONIC_DISTRIBUTION);
+			}
+		});
+		buttonPane.add(buttonHarmDistribution);
+		
+		buttonDFT = new JButton("DFT");
+		buttonDFT.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addTab(TabType.DFT);
+			}
+		});
+		buttonPane.add(buttonDFT);
 		
 		tabbedPane = new ClosableTabbedPane();
 		contentPane.add(tabbedPane, BorderLayout.CENTER);

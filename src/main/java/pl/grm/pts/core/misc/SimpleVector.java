@@ -2,11 +2,11 @@ package pl.grm.pts.core.misc;
 
 import java.util.*;
 
-public class Vector {
+public class SimpleVector {
 	private double[]	values;
 	private int			size;
 	
-	public Vector(double... values) {
+	public SimpleVector(double... values) {
 		this.setValues(values);
 		setSize(values.length);
 	}
@@ -42,8 +42,16 @@ public class Vector {
 		return 0;
 	}
 	
-	public double[] getValues() {
+	public double[] getValuesD() {
 		return values;
+	}
+	
+	public float[] getValuesF() {
+		float[] fA = new float[values.length];
+		for (int i = 0; i < values.length; i++) {
+			fA[i] = (float) values[i];
+		}
+		return fA;
 	}
 	
 	public void setValues(double[] values) {

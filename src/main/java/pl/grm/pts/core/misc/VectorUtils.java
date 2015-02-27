@@ -4,13 +4,15 @@ import java.util.*;
 
 public class VectorUtils {
 	
-	public static Vector toVector(String txt) throws NumberFormatException {
+	public static SimpleVector toVector(String txt) throws NumberFormatException {
 		int stringLength = txt.length();
 		ArrayList<Double> values = new ArrayList<Double>();
 		txt = txt.replace(',', '.');
-		if (txt.charAt(0) == '[' && txt.charAt(stringLength - 1) == ']') {
-			txt = txt.substring(1, stringLength - 1);
-			stringLength = txt.length();
+		if (txt.length() > 0) {
+			if (txt.charAt(0) == '[' && txt.charAt(stringLength - 1) == ']') {
+				txt = txt.substring(1, stringLength - 1);
+				stringLength = txt.length();
+			}
 			String[] valSA = txt.split(" ");
 			for (String valS : valSA) {
 				try {
@@ -22,8 +24,7 @@ public class VectorUtils {
 				}
 			}
 			double[] valArray = toArray(values);
-			Vector vector = new Vector(valArray);
-			System.out.println(vector.toString());
+			SimpleVector vector = new SimpleVector(valArray);
 			return vector;
 		}
 		throwBadInputException();
@@ -42,5 +43,31 @@ public class VectorUtils {
 			valArray[i] = it.next();
 		}
 		return valArray;
+	}
+	
+	public static void multiply(double p, SimpleVector vec) {
+		int size = vec.getSize();
+		for (int i = 0; i < size; i++) {
+			vec.setValue(i, vec.getValue(i) * p);
+		}
+	}
+	
+	public static int multiply(SimpleVector vec1, SimpleVector vec2) {
+		int size = vec1.getSize();
+		int res = 0;
+		for (int i = 0; i < size; i++) {
+			res += vec1.getValue(i) * vec2.getValue(i);
+		}
+		return res;
+	}
+	
+	public static void round(SimpleVector vec, int i) {
+		for (int n = 0; n < vec.getSize(); n++) {
+			double val = vec.getValue(n);
+			val *= Math.pow(10, i);
+			val = Math.round(val);
+			val /= Math.pow(10, i);
+			vec.setValue(n, val);
+		}
 	}
 }
