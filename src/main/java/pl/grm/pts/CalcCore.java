@@ -29,55 +29,6 @@ public class CalcCore {
 		this.dbConvCore = new DBConvCore();
 	}
 	
-	public synchronized void calcSignalAnalysis(SignalAnalysis signalAnalysis) throws Exception {
-		ConcurrentHashMap<Integer, JTextField> samplesF = signalAnalysis.getSamples();
-		ConcurrentHashMap<SignalDataType, JTextField> signalOutputs = signalAnalysis.getOutputs();
-		ConcurrentHashMap<Integer, Double> samples = new ConcurrentHashMap<Integer, Double>();
-		for (Iterator<Integer> it = samplesF.keySet().iterator(); it.hasNext();) {
-			Integer sampleID = it.next();
-			JTextField jTextField = samplesF.get(sampleID);
-			String text = jTextField.getText();
-			double value;
-			if (text.equals("") || text.equals(" ")) {
-				value = 0;
-			} else {
-				try {
-					value = Double.parseDouble(text);
-				}
-				catch (NumberFormatException e) {
-					throw new Exception("Z³a probka o id " + sampleID + " o wartosci " + text, e);
-				}
-			}
-			samples.put(sampleID, value);
-		}
-		signalAnalysisCore.calculate(samples, signalOutputs);
-	}
-	
-	public synchronized void calcSignalInSignal(String vecS1, String vecS2,
-			HashMap<String, Component> outputs) throws Exception {
-		SimpleVector vec1 = VectorUtils.toVector(vecS1);
-		SimpleVector vec2 = VectorUtils.toVector(vecS2);
-		if (vec1.getSize() == vec2.getSize()) {
-			sIS.calc(vec1, vec2, outputs);
-		} else {
-			throw new Exception("Ró¿ne wielkoœci wektorów!");
-		}
-	}
-	
-	public Vector<Complex> calcDFT(String txt) throws Exception {
-		SimpleVector vec = VectorUtils.toVector(txt);
-		Vector<Point> iVec = vec.toPointVector();
-		dftCore.setSignal(iVec);
-		Vector<Complex> resultSignal = dftCore.getResultSignal();
-		return resultSignal;
-	}
-	
-	public Vector<Complex> calcFFT(String txt) throws Exception {
-		Vector<Complex> vec = VectorUtils.toComplexVector(txt);
-		Vector<Complex> resultSignal = fftCore.fft(vec, false);
-		return resultSignal;
-	}
-	
 	public double calcDB(String a, String p, String k, String p_o, boolean inverted)
 			throws Exception {
 		double ai;
@@ -108,6 +59,54 @@ public class CalcCore {
 		catch (NumberFormatException e) {
 			throw new NumberFormatException(e.getLocalizedMessage() + "\nin P_o");
 		}
-		return dbConvCore.calcDB(ai, pi, ki, poi, inverted);
+		return this.dbConvCore.calcDB(ai, pi, ki, poi, inverted);
+	}
+	
+	public Vector<Complex> calcDFT(String txt) throws Exception {
+		SimpleVector vec = VectorUtils.toVector(txt);
+		Vector<Point> iVec = vec.toPointVector();
+		this.dftCore.setSignal(iVec);
+		Vector<Complex> resultSignal = this.dftCore.getResultSignal();
+		return resultSignal;
+	}
+	
+	public Vector<Complex> calcFFT(String txt) throws Exception {
+		Vector<Complex> vec = VectorUtils.toComplexVector(txt);
+		Vector<Complex> resultSignal = this.fftCore.fft(vec, false);
+		return resultSignal;
+	}
+	
+	public synchronized void calcSignalAnalysis(SignalAnalysis signalAnalysis) throws Exception {
+		ConcurrentHashMap<Integer, JTextField> samplesF = signalAnalysis.getSamples();
+		ConcurrentHashMap<SignalDataType, JTextField> signalOutputs = signalAnalysis.getOutputs();
+		ConcurrentHashMap<Integer, Double> samples = new ConcurrentHashMap<Integer, Double>();
+		for (Integer sampleID : samplesF.keySet()) {
+			JTextField jTextField = samplesF.get(sampleID);
+			String text = jTextField.getText();
+			double value;
+			if (text.equals("") || text.equals(" ")) {
+				value = 0;
+			} else {
+				try {
+					value = Double.parseDouble(text);
+				}
+				catch (NumberFormatException e) {
+					throw new Exception("Z³a probka o id " + sampleID + " o wartosci " + text, e);
+				}
+			}
+			samples.put(sampleID, value);
+		}
+		this.signalAnalysisCore.calculate(samples, signalOutputs);
+	}
+	
+	public synchronized void calcSignalInSignal(String vecS1, String vecS2,
+			HashMap<String, Component> outputs) throws Exception {
+		SimpleVector vec1 = VectorUtils.toVector(vecS1);
+		SimpleVector vec2 = VectorUtils.toVector(vecS2);
+		if (vec1.getSize() == vec2.getSize()) {
+			this.sIS.calc(vec1, vec2, outputs);
+		} else {
+			throw new Exception("Ró¿ne wielkoœci wektorów!");
+		}
 	}
 }

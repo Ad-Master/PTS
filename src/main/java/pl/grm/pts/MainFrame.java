@@ -1,7 +1,6 @@
 package pl.grm.pts;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.*;
@@ -34,113 +33,89 @@ public class MainFrame extends JFrame {
 	 */
 	public MainFrame() {
 		this.setTitle(SET_TITLE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 100, SET_WIDTH, SET_HEIGHT);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(200, 100, SET_WIDTH, SET_HEIGHT);
+		this.contentPane = new JPanel();
+		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.contentPane.setLayout(new BorderLayout(0, 0));
+		this.setContentPane(this.contentPane);
 		
 		JPanel topPanel = new JPanel();
-		contentPane.add(topPanel, BorderLayout.NORTH);
+		this.contentPane.add(topPanel, BorderLayout.NORTH);
 		topPanel.setLayout(new BorderLayout(0, 0));
 		
-		menuBar = new JMenuBar();
-		topPanel.add(menuBar, BorderLayout.NORTH);
+		this.menuBar = new JMenuBar();
+		topPanel.add(this.menuBar, BorderLayout.NORTH);
 		
-		fileMenu = new JMenu("File");
-		menuBar.add(fileMenu);
+		this.fileMenu = new JMenu("File");
+		this.menuBar.add(this.fileMenu);
 		
-		exitMenuItem = new JMenuItem("Exit");
-		fileMenu.add(exitMenuItem);
+		this.exitMenuItem = new JMenuItem("Exit");
+		this.fileMenu.add(this.exitMenuItem);
 		
-		helpMenu = new JMenu("Help");
-		menuBar.add(helpMenu);
+		this.helpMenu = new JMenu("Help");
+		this.menuBar.add(this.helpMenu);
 		
-		aboutMenuItem = new JMenuItem("About ...");
-		helpMenu.add(aboutMenuItem);
+		this.aboutMenuItem = new JMenuItem("About ...");
+		this.aboutMenuItem
+				.addActionListener(e -> {
+					JOptionPane
+							.showMessageDialog(
+									this,
+									"Program napisany zgodnie z materia³ami z przedmiotu Podstawy Teorii Sygna³ów\n\tWykonany przez _Admaster",
+									"About", JOptionPane.INFORMATION_MESSAGE);
+				});
+		this.helpMenu.add(this.aboutMenuItem);
 		
-		buttonPane = new JPanel();
-		buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		this.buttonPane = new JPanel();
+		this.buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		scrollPane = new JScrollPane();
-		scrollPane.setViewportView(buttonPane);
-		scrollPane.setPreferredSize(new Dimension(600, 50));
-		topPanel.add(scrollPane, BorderLayout.SOUTH);
+		this.scrollPane = new JScrollPane();
+		this.scrollPane.setViewportView(this.buttonPane);
+		this.scrollPane.setPreferredSize(new Dimension(600, 50));
+		topPanel.add(this.scrollPane, BorderLayout.SOUTH);
 		
-		buttondBConvert = new JButton("Konw. dB");
-		buttondBConvert.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addTab(TabType.DBCONVERT);
-			}
-		});
-		buttonPane.add(buttondBConvert);
+		this.buttondBConvert = new JButton("Konw. dB");
+		this.buttondBConvert.addActionListener(e -> this.addTab(TabType.DBCONVERT));
+		this.buttonPane.add(this.buttondBConvert);
 		
-		buttonHistogram = new JButton("Histogram");
-		buttonHistogram.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addTab(TabType.HISTOGRAM);
-			}
-		});
-		buttonPane.add(buttonHistogram);
+		this.buttonHistogram = new JButton("Histogram");
+		this.buttonHistogram.addActionListener(e -> this.addTab(TabType.HISTOGRAM));
+		this.buttonPane.add(this.buttonHistogram);
 		
-		buttonSignalAnalysis = new JButton("An. sygna³u");
-		buttonSignalAnalysis.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addTab(TabType.SIGNAL_ANALYSIS);
-			}
-		});
-		buttonPane.add(buttonSignalAnalysis);
+		this.buttonSignalAnalysis = new JButton("An. sygna³u");
+		this.buttonSignalAnalysis.addActionListener(e -> MainFrame.this
+				.addTab(TabType.SIGNAL_ANALYSIS));
+		this.buttonPane.add(this.buttonSignalAnalysis);
 		
-		buttonSignalInSignal = new JButton("Sygna³ w sygn.");
-		buttonSignalInSignal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addTab(TabType.SIGNAL_IN_SIGNAL);
-			}
-		});
-		buttonPane.add(buttonSignalInSignal);
+		this.buttonSignalInSignal = new JButton("Sygna³ w sygn.");
+		this.buttonSignalInSignal.addActionListener(e -> MainFrame.this
+				.addTab(TabType.SIGNAL_IN_SIGNAL));
+		this.buttonPane.add(this.buttonSignalInSignal);
 		
-		buttonHarmDistribution = new JButton("Rozk³. na harm.");
-		buttonHarmDistribution.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addTab(TabType.HARMONIC_DISTRIBUTION);
-			}
-		});
-		buttonPane.add(buttonHarmDistribution);
+		this.buttonHarmDistribution = new JButton("Rozk³. na harm.");
+		this.buttonHarmDistribution.addActionListener(e -> MainFrame.this
+				.addTab(TabType.HARMONIC_DISTRIBUTION));
+		this.buttonPane.add(this.buttonHarmDistribution);
 		
-		buttonDFT = new JButton("DFT");
-		buttonDFT.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addTab(TabType.DFT);
-			}
-		});
-		buttonPane.add(buttonDFT);
+		this.buttonDFT = new JButton("DFT");
+		this.buttonDFT.addActionListener(e -> MainFrame.this.addTab(TabType.DFT));
+		this.buttonPane.add(this.buttonDFT);
 		
-		buttonFFT = new JButton("FFT");
-		buttonFFT.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addTab(TabType.FFT);
-			}
-		});
-		buttonPane.add(buttonFFT);
+		this.buttonFFT = new JButton("FFT");
+		this.buttonFFT.addActionListener(e -> MainFrame.this.addTab(TabType.FFT));
+		this.buttonPane.add(this.buttonFFT);
 		
-		tabbedPane = new ClosableTabbedPane();
-		contentPane.add(tabbedPane, BorderLayout.CENTER);
+		this.tabbedPane = new ClosableTabbedPane();
+		this.contentPane.add(this.tabbedPane, BorderLayout.CENTER);
 	}
 	
 	protected void addTab(TabType tabType) {
 		Tab tab = tabType.getTab();
 		if (tab != null) {
-			tabs.put(tabType, tab);
-			tabbedPane.addTab(tabType.getName(), (JPanel) tab);
-			tabbedPane.setSelectedComponent((JPanel) tab);
+			this.tabs.put(tabType, tab);
+			this.tabbedPane.addTab(tabType.getName(), (JPanel) tab);
+			this.tabbedPane.setSelectedComponent((JPanel) tab);
 		}
 	}
 	

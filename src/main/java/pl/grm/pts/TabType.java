@@ -36,14 +36,14 @@ public enum TabType {
 	}
 	
 	public String getName() {
-		return name;
+		return this.name;
 	}
 	
 	public Tab getTab() {
 		Tab tab = null;
 		try {
 			tab = this.clazz.newInstance();
-			((JPanel) tab).setName(name);
+			((JPanel) tab).setName(this.name);
 		}
 		catch (InstantiationException e) {
 			e.printStackTrace();
