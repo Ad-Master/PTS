@@ -24,8 +24,16 @@ public class FFT extends JPanel implements Tab {
 		panel_Top.add(lblNewLabel_1);
 		
 		tF_input = new JTextField();
-		panel_Top.add(tF_input);
 		tF_input.setColumns(10);
+		tF_input.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Thread(() -> {
+					countFFT();
+				}).start();
+			}
+		});
+		panel_Top.add(tF_input);
 		
 		JButton btnObliczFft = new JButton("Oblicz FFT");
 		btnObliczFft.addActionListener(new ActionListener() {
@@ -40,6 +48,9 @@ public class FFT extends JPanel implements Tab {
 		
 		JPanel panel_Bottom = new JPanel();
 		add(panel_Bottom, BorderLayout.SOUTH);
+		
+		JLabel lblMax = new JLabel("max 10");
+		panel_Bottom.add(lblMax);
 		
 		panel_Main = new JPanel();
 		add(panel_Main, BorderLayout.CENTER);

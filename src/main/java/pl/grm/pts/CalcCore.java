@@ -19,12 +19,14 @@ public class CalcCore {
 	private SISCore				sIS;
 	private DFTCore				dftCore;
 	private FFTCore				fftCore;
+	private DBConvCore			dbConvCore;
 	
 	public CalcCore() {
 		this.signalAnalysisCore = new SignalAnalysisCore();
 		this.sIS = new SISCore();
 		this.dftCore = new DFTCore();
 		this.fftCore = new FFTCore();
+		this.dbConvCore = new DBConvCore();
 	}
 	
 	public synchronized void calcSignalAnalysis(SignalAnalysis signalAnalysis) throws Exception {
@@ -74,5 +76,38 @@ public class CalcCore {
 		Vector<Complex> vec = VectorUtils.toComplexVector(txt);
 		Vector<Complex> resultSignal = fftCore.fft(vec, false);
 		return resultSignal;
+	}
+	
+	public double calcDB(String a, String p, String k, String p_o, boolean inverted)
+			throws Exception {
+		double ai;
+		double pi;
+		double ki;
+		double poi;
+		try {
+			ai = Double.parseDouble(a);
+		}
+		catch (NumberFormatException e) {
+			throw new NumberFormatException(e.getLocalizedMessage() + "\nin A");
+		}
+		try {
+			pi = Double.parseDouble(p);
+		}
+		catch (NumberFormatException e) {
+			throw new NumberFormatException(e.getLocalizedMessage() + "\nin P");
+		}
+		try {
+			ki = Double.parseDouble(k);
+		}
+		catch (NumberFormatException e) {
+			throw new NumberFormatException(e.getLocalizedMessage() + "\nin k");
+		}
+		try {
+			poi = Double.parseDouble(p_o);
+		}
+		catch (NumberFormatException e) {
+			throw new NumberFormatException(e.getLocalizedMessage() + "\nin P_o");
+		}
+		return dbConvCore.calcDB(ai, pi, ki, poi, inverted);
 	}
 }

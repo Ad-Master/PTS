@@ -30,15 +30,39 @@ public class SignalInSignal extends JPanel implements Tab {
 		topPanel.add(lblV);
 		
 		tF_V = new JTextField();
-		topPanel.add(tF_V);
 		tF_V.setColumns(10);
+		tF_V.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					calcSIS();
+				}
+				catch (Exception e1) {
+					JOptionPane.showInternalMessageDialog(SignalInSignal.this.getParent()
+							.getParent(), e1.getMessage());
+				}
+			}
+		});
+		topPanel.add(tF_V);
 		
 		JLabel lblW = new JLabel("W/ = ");
 		topPanel.add(lblW);
 		
 		tF_W = new JTextField();
-		topPanel.add(tF_W);
 		tF_W.setColumns(10);
+		tF_W.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					calcSIS();
+				}
+				catch (Exception e1) {
+					JOptionPane.showInternalMessageDialog(SignalInSignal.this.getParent()
+							.getParent(), e1.getMessage());
+				}
+			}
+		});
+		topPanel.add(tF_W);
 		
 		tglbtnVWW = new JToggleButton("V/ w W/  ");
 		tglbtnVWW.setHorizontalAlignment(SwingConstants.LEFT);
@@ -59,14 +83,7 @@ public class SignalInSignal extends JPanel implements Tab {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					boolean side = tglbtnVWW.isSelected();
-					if (side) {
-						CalcCore.instance.calcSignalInSignal(tF_W.getText(), tF_V.getText(),
-								getOutputs());
-					} else {
-						CalcCore.instance.calcSignalInSignal(tF_V.getText(), tF_W.getText(),
-								getOutputs());
-					}
+					calcSIS();
 				}
 				catch (Exception e1) {
 					JOptionPane.showInternalMessageDialog(SignalInSignal.this.getParent()
@@ -144,6 +161,15 @@ public class SignalInSignal extends JPanel implements Tab {
 		outputs.put("ew", tF_EW);
 		outputs.put("stateBtTg", tglbtnVWW);
 		return outputs;
+	}
+	
+	public void calcSIS() throws Exception {
+		boolean side = tglbtnVWW.isSelected();
+		if (side) {
+			CalcCore.instance.calcSignalInSignal(tF_W.getText(), tF_V.getText(), getOutputs());
+		} else {
+			CalcCore.instance.calcSignalInSignal(tF_V.getText(), tF_W.getText(), getOutputs());
+		}
 	}
 	
 }

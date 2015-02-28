@@ -10,7 +10,7 @@ import javax.swing.border.*;
 public class MainFrame extends JFrame {
 	private static final long		serialVersionUID	= 1L;
 	private HashMap<TabType, Tab>	tabs				= new HashMap<TabType, Tab>();
-	public static int				SET_HEIGHT			= 800, SET_WIDTH = 600;
+	public static int				SET_HEIGHT			= 900, SET_WIDTH = 800;
 	public static String			SET_TITLE			= "PTS Calc";
 	private JPanel					contentPane;
 	private JButton					buttondBConvert;

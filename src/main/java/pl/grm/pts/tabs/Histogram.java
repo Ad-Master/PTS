@@ -32,15 +32,29 @@ public class Histogram extends JPanel implements Tab {
 		topPanel.add(lblIloKolumn);
 		
 		tFColumns = new JTextField();
-		topPanel.add(tFColumns);
 		tFColumns.setColumns(10);
+		tFColumns.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CreateTableWorker tableWorker = new CreateTableWorker();
+				tableWorker.execute();
+			}
+		});
+		topPanel.add(tFColumns);
 		
 		JLabel lblIloWierszy = new JLabel("Ilo\u015B wierszy");
 		topPanel.add(lblIloWierszy);
 		
 		tFRows = new JTextField();
-		topPanel.add(tFRows);
 		tFRows.setColumns(10);
+		tFRows.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CreateTableWorker tableWorker = new CreateTableWorker();
+				tableWorker.execute();
+			}
+		});
+		topPanel.add(tFRows);
 		
 		JButton buttonCreateTable = new JButton("Stw\u00F3rz");
 		buttonCreateTable.addActionListener(new ActionListener() {

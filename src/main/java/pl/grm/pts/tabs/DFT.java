@@ -33,8 +33,16 @@ public class DFT extends JPanel implements Tab {
 		panel_Top.add(lblSygna);
 		
 		tFieldSignalInput = new JTextField();
-		panel_Top.add(tFieldSignalInput);
+		tFieldSignalInput.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Thread(() -> {
+					countDFT();
+				}).start();
+			}
+		});
 		tFieldSignalInput.setColumns(10);
+		panel_Top.add(tFieldSignalInput);
 		
 		JButton btnObliczDft = new JButton("Oblicz DFT");
 		btnObliczDft.addActionListener(new ActionListener() {
