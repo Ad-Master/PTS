@@ -18,11 +18,13 @@ public class CalcCore {
 	private SignalAnalysisCore	signalAnalysisCore;
 	private SISCore				sIS;
 	private DFTCore				dftCore;
+	private FFTCore				fftCore;
 	
 	public CalcCore() {
 		this.signalAnalysisCore = new SignalAnalysisCore();
 		this.sIS = new SISCore();
 		this.dftCore = new DFTCore();
+		this.fftCore = new FFTCore();
 	}
 	
 	public synchronized void calcSignalAnalysis(SignalAnalysis signalAnalysis) throws Exception {
@@ -62,16 +64,15 @@ public class CalcCore {
 	
 	public Vector<Complex> calcDFT(String txt) throws Exception {
 		SimpleVector vec = VectorUtils.toVector(txt);
-		float[] arr = vec.getValuesF();
-		Vector<Point> iVec = new Vector<Point>();
-		for (int i = 0; i < arr.length; i++) {
-			Point p = new Point(i, arr[i]);
-			iVec.addElement(p);
-		}
+		Vector<Point> iVec = vec.toPointVector();
 		dftCore.setSignal(iVec);
 		Vector<Complex> resultSignal = dftCore.getResultSignal();
-		
 		return resultSignal;
 	}
 	
+	public Vector<Complex> calcFFT(String txt) throws Exception {
+		Vector<Complex> vec = VectorUtils.toComplexVector(txt);
+		Vector<Complex> resultSignal = fftCore.fft(vec, false);
+		return resultSignal;
+	}
 }

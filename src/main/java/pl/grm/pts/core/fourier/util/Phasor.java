@@ -1,8 +1,8 @@
 package pl.grm.pts.core.fourier.util;
 
 public class Phasor {
-	private float	magnitude;
-	private float	angle;
+	private double	magnitude;
+	private double	angle;
 	
 	public Phasor() {
 		this.magnitude = 0.0f;
@@ -14,16 +14,16 @@ public class Phasor {
 		this.angle = c.getAngle();
 	}
 	
-	public Phasor(float magn, float angle) {
+	public Phasor(double magn, double angle) {
 		this.magnitude = magn;
 		this.angle = angle;
 	}
 	
-	public float getAngle() {
+	public double getAngle() {
 		return this.angle;
 	}
 	
-	public void setAngle(float a) {
+	public void setAngle(double a) {
 		this.angle = a;
 	}
 	
@@ -31,14 +31,14 @@ public class Phasor {
 		double radA = (this.angle * Math.PI) / 180;
 		double R = Math.cos(radA) * this.magnitude;
 		double I = Math.sin(radA) * this.magnitude;
-		return new Complex((float) R, (float) I);
+		return new Complex(R, I);
 	}
 	
-	public float getMagnitude() {
+	public double getMagnitude() {
 		return this.magnitude;
 	}
 	
-	public void setMagnitude(float m) {
+	public void setMagnitude(double m) {
 		this.magnitude = m;
 	}
 }

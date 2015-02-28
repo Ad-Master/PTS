@@ -70,4 +70,14 @@ public class SimpleVector {
 	public String toString() {
 		return "Vector  size = " + this.size + " " + Arrays.toString(this.values);
 	}
+	
+	public Vector<Point> toPointVector() {
+		float[] arr = this.getValuesF();
+		Vector<Point> iVec = new Vector<Point>();
+		for (int i = 0; i < arr.length; i++) {
+			Point p = new Point(i, arr[i]);
+			iVec.addElement(p);
+		}
+		return iVec;
+	}
 }

@@ -1,17 +1,17 @@
 package pl.grm.pts.core.fourier.util;
 
 public class Complex {
-	private float	real;
-	private float	imaginary;
+	private double	real;
+	private double	imaginary;
 	
 	public Complex() {
 		this.real = 0.0f;
 		this.imaginary = 0.0f;
 	}
 	
-	public Complex(float real, float imaginary) {
-		this.real = real;
-		this.imaginary = imaginary;
+	public Complex(double newR, double newI) {
+		this.real = newR;
+		this.imaginary = newI;
 	}
 	
 	public Complex(Phasor phase) {
@@ -20,38 +20,38 @@ public class Complex {
 	}
 	
 	public Complex add(Complex cx) {
-		float newR = this.real + cx.real;
-		float newI = this.imaginary + cx.imaginary;
+		double newR = this.real + cx.real;
+		double newI = this.imaginary + cx.imaginary;
 		return new Complex(newR, newI);
 	}
 	
 	public Complex divide(Complex divisor) {
-		float R2 = divisor.real;
-		float I2 = divisor.imaginary;
-		float div = (float) (Math.pow(R2, 2) + Math.pow(I2, 2));
-		float newR = ((this.real * R2) + (this.imaginary * I2)) / div;
-		float newI = ((R2 * this.imaginary) - (this.real * I2)) / div;
+		double R2 = divisor.real;
+		double I2 = divisor.imaginary;
+		double div = Math.pow(R2, 2) + Math.pow(I2, 2);
+		double newR = ((this.real * R2) + (this.imaginary * I2)) / div;
+		double newI = ((R2 * this.imaginary) - (this.real * I2)) / div;
 		return new Complex(newR, newI);
 	}
 	
-	public Complex divide(float divisor) {
-		float R2 = divisor;
-		float newR, newI;
-		float div = (float) Math.pow(R2, 2);
+	public Complex divide(double divisor) {
+		double R2 = divisor;
+		double newR, newI;
+		double div = Math.pow(R2, 2);
 		newR = (this.real * R2) / div;
 		newI = (R2 * this.imaginary) / div;
 		return new Complex(newR, newI);
 	}
 	
 	public Complex multiply(Complex rhs) {
-		float newR = (this.real * rhs.real) - (this.imaginary * rhs.imaginary);
-		float newI = (this.real * rhs.imaginary) + (rhs.real * this.imaginary);
+		double newR = (this.real * rhs.real) - (this.imaginary * rhs.imaginary);
+		double newI = (this.real * rhs.imaginary) + (rhs.real * this.imaginary);
 		return new Complex(newR, newI);
 	}
 	
-	public Complex multiply(float rhs) {
-		float newR = this.real * rhs;
-		float newI = rhs * this.imaginary;
+	public Complex multiply(double rhs) {
+		double newR = this.real * rhs;
+		double newI = rhs * this.imaginary;
 		return new Complex(newR, newI);
 	}
 	
@@ -59,39 +59,39 @@ public class Complex {
 		return ((this.real == cx.real) && (this.imaginary == cx.imaginary));
 	}
 	
-	public float getMagnitude() {
-		return (float) Math.sqrt(Math.pow(this.real, 2) + Math.pow(this.imaginary, 2));
+	public double getMagnitude() {
+		return Math.sqrt(Math.pow(this.real, 2) + Math.pow(this.imaginary, 2));
 	}
 	
 	public Phasor getPhase() {
 		return new Phasor(this.getMagnitude(), this.getAngle());
 	}
 	
-	public float getAngle() {
-		float angle = (float) Math.atan(this.imaginary / this.real);
-		angle = (angle * 180.0f) / (float) Math.PI;
+	public double getAngle() {
+		double angle = Math.atan(this.imaginary / this.real);
+		angle = (angle * 180.0f) / Math.PI;
 		return angle;
 	}
 	
-	public float getReal() {
+	public double getReal() {
 		return this.real;
 	}
 	
-	public void setReal(float r) {
+	public void setReal(double r) {
 		this.real = r;
 	}
 	
-	public float getImaginary() {
+	public double getImaginary() {
 		return this.imaginary;
 	}
 	
-	public void setImaginary(float i) {
+	public void setImaginary(double i) {
 		this.imaginary = i;
 	}
 	
 	public Complex substract(Complex cx) {
-		float newR = this.real - cx.real;
-		float newI = this.imaginary - cx.imaginary;
+		double newR = this.real - cx.real;
+		double newI = this.imaginary - cx.imaginary;
 		return new Complex(newR, newI);
 	}
 	
@@ -115,6 +115,9 @@ public class Complex {
 			}
 		} else if (this.imaginary > 0.00001) {
 			string += " + " + this.imaginary + "j";
+		}
+		if (string.equals("")) {
+			string = "0";
 		}
 		return string;
 	}
