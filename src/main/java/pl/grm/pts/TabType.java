@@ -25,7 +25,13 @@ public enum TabType {
 			DFT.class) ,
 	FFT(
 			"FFT",
-			FFT.class);
+			FFT.class) ,
+	A_LAW(
+			"A-law",
+			Alaw.class) ,
+	M_LAW(
+			"M-law",
+			Mlaw.class);
 	
 	private String					name;
 	private Class<? extends Tab>	clazz;

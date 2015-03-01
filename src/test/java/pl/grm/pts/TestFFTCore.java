@@ -31,4 +31,27 @@ public class TestFFTCore {
 		assertThat(imaginary2, equalTo(0d));
 	}
 	
+	@Test
+	public final void testReverseBits() {
+		int i = 1;
+		int j = 1;
+		int revBits = FFTCore.reverseBits(i >> 1, j);
+		assertThat(revBits, equalTo(0));
+		i = 2;
+		j = 1;
+		revBits = FFTCore.reverseBits(i >> 1, j);
+		assertThat(revBits, equalTo(1));
+		i = 3;
+		j = 3;
+		revBits = FFTCore.reverseBits(i >> 1, j);
+		assertThat(revBits, equalTo(4));
+		i = 3;
+		j = 2;
+		revBits = FFTCore.reverseBits(i >> 1, j);
+		assertThat(revBits, equalTo(2));
+		i = 2;
+		j = 3;
+		revBits = FFTCore.reverseBits(i >> 1, j);
+		assertThat(revBits, equalTo(4));
+	}
 }

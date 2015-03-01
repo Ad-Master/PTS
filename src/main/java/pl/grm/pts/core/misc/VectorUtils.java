@@ -22,14 +22,14 @@ public class VectorUtils {
 					values.add(valD);
 				}
 				catch (Exception e) {
-					throwBadInputException();
+					throwBadInputException(e);
 				}
 			}
 			double[] valArray = toArray(values);
 			SimpleVector vector = new SimpleVector(valArray);
 			return vector;
 		}
-		throwBadInputException();
+		throwBadInputException(null);
 		return null;
 	}
 	
@@ -49,17 +49,19 @@ public class VectorUtils {
 				try {
 					if (valS.contains("j")) {
 						int iSign = 0;
+						boolean plus = false;
 						boolean doublePart = false;
 						if (valS.contains("+")) {
 							iSign = valS.indexOf('+');
+							plus = true;
 							doublePart = true;
 						} else if (valS.contains("-")) {
 							iSign = valS.indexOf('-');
 							doublePart = true;
 						}
 						if (doublePart) {
-							String fPart = valS.substring(0, iSign - 1);
-							String sPart = valS.substring(iSign + 1, stringLength);
+							String fPart = valS.substring(0, iSign);
+							String sPart = valS.substring(iSign + 1);
 							boolean gotImaginary = false;
 							if (fPart.contains("j")) {
 								gotImaginary = true;
@@ -79,14 +81,18 @@ public class VectorUtils {
 							if (!gotImaginary && sPart.contains("j")) {
 								gotImaginary = true;
 								int iJ = sPart.indexOf('j');
-								if (iJ == 0 || iJ == 1) {
+								if (iJ == 0) {
 									if (sPart.length() > 1) {
-										imag = Double.parseDouble(sPart.substring(iJ + 1));
+										imag = Double.parseDouble(sPart.substring(iJ));
 									} else {
 										imag = 1;
 									}
 								} else if (iJ == sPart.length() - 1) {
-									imag = Double.parseDouble(sPart.substring(0, iJ + 1));
+									String substring = sPart.substring(0, iJ);
+									imag = Double.parseDouble(substring);
+								}
+								if (!plus) {
+									imag = -imag;
 								}
 							} else {
 								real = Double.parseDouble(sPart);
@@ -99,19 +105,20 @@ public class VectorUtils {
 					values.add(cx);
 				}
 				catch (Exception e) {
-					throwBadInputException();
+					throwBadInputException(e);
 				}
 			}
 			Vector<Complex> vector = new Vector<Complex>(values);
 			return vector;
 		}
-		throwBadInputException();
+		throwBadInputException(null);
 		return null;
 	}
 	
-	public static void throwBadInputException() throws NumberFormatException {
+	public static void throwBadInputException(Exception e) throws NumberFormatException {
 		throw new NumberFormatException(
-				"Bad input string syntax. \nExpected \"[x x x x]\" where x are numbers");
+				"Bad input string syntax. \nExpected \"[x x x x]\" where x are numbers\n" + e == null
+						? "" : e.getLocalizedMessage());
 	}
 	
 	public static double[] toArray(ArrayList<Double> values) {

@@ -13,8 +13,22 @@ public class DFTCore {
 		this.signalSize = 0;
 	}
 	
-	public DFTCore(Vector<Point> d) {
-		this.setSignal(d);
+	public DFTCore(Vector<Point> inputSignal) {
+		this();
+		if (inputSignal != null) {
+			this.setSignal(inputSignal);
+			this.signalSize = inputSignal.size();
+		}
+	}
+	
+	public void setSignal(Vector<Point> inputSignal) {
+		if (inputSignal != null) {
+			int size = inputSignal.size();
+			if (size > 0) {
+				this.signalSize = size;
+				this.inputSignal = inputSignal;
+			}
+		}
 	}
 	
 	public Complex getPoint(int index) {
@@ -39,16 +53,6 @@ public class DFTCore {
 		return new Complex((float) R, (float) I);
 	}
 	
-	public void setSignal(Vector<Point> inputSignal) {
-		if (inputSignal != null) {
-			int size = inputSignal.size();
-			if (size > 0) {
-				this.signalSize = size;
-				this.inputSignal = inputSignal;
-			}
-		}
-	}
-	
 	public Vector<Complex> getResultSignal() {
 		if (signalSize == 0) { return null; }
 		Vector<Complex> result = new Vector<Complex>();
@@ -57,5 +61,9 @@ public class DFTCore {
 			result.addElement(cx);
 		}
 		return result;
+	}
+	
+	public int getSignalSize() {
+		return signalSize;
 	}
 }

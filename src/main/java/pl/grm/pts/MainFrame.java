@@ -27,6 +27,8 @@ public class MainFrame extends JFrame {
 	private JButton					buttonDFT;
 	private JScrollPane				scrollPane;
 	private JButton					buttonFFT;
+	private JButton					buttonAlaw;
+	private JButton					buttonMlaw;
 	
 	/**
 	 * Create the frame.
@@ -106,6 +108,14 @@ public class MainFrame extends JFrame {
 		this.buttonFFT.addActionListener(e -> MainFrame.this.addTab(TabType.FFT));
 		this.buttonPane.add(this.buttonFFT);
 		
+		this.buttonAlaw = new JButton("A-law");
+		this.buttonAlaw.addActionListener(e -> MainFrame.this.addTab(TabType.A_LAW));
+		this.buttonPane.add(this.buttonAlaw);
+		
+		this.buttonMlaw = new JButton("M-law");
+		this.buttonMlaw.addActionListener(e -> MainFrame.this.addTab(TabType.M_LAW));
+		this.buttonPane.add(this.buttonMlaw);
+		
 		this.tabbedPane = new ClosableTabbedPane();
 		this.contentPane.add(this.tabbedPane, BorderLayout.CENTER);
 	}
@@ -118,5 +128,4 @@ public class MainFrame extends JFrame {
 			this.tabbedPane.setSelectedComponent((JPanel) tab);
 		}
 	}
-	
 }

@@ -65,29 +65,16 @@ public class FFTCore {
 		return output;
 	}
 	
-	public static int reverseBits(int ju, int nu) {
-		int j2;
-		int j = ju;
+	public static int reverseBits(int j, int nu) {
 		int k = 0;
 		for (int i = 1; i <= nu; i++) {
-			j2 = j / 2;
-			k = ((2 * k) + j) - (2 * j2);
-			j = j2;
+			k = (2 * k + j) - (2 * (j / 2));
+			j = j / 2;
 		}
 		return k;
 	}
 	
 	public Vector<Complex> getLastResultSignal() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public double[] clone(double[] arr) {
-		int size = arr.length;
-		double[] cArr = new double[size];
-		for (int i = 0; i < size; i++) {
-			cArr[i] = arr[i];
-		}
-		return cArr;
+		return lastOutput;
 	}
 }
