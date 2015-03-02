@@ -1,10 +1,11 @@
 package pl.grm.pts.core;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
 
-import javax.swing.*;
+import javax.swing.JTextField;
 
 public class SignalAnalysisCore {
 	private ConcurrentHashMap<Integer, Double>				samples;

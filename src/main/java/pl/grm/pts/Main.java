@@ -1,8 +1,8 @@
 package pl.grm.pts;
 
-import java.awt.*;
+import java.awt.EventQueue;
 
-import javax.swing.*;
+import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 public class Main {

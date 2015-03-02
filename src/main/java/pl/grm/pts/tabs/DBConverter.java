@@ -1,11 +1,20 @@
 package pl.grm.pts.tabs;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import pl.grm.pts.*;
+import pl.grm.pts.CalcCore;
+import pl.grm.pts.Tab;
 
 public class DBConverter extends JPanel implements Tab {
 	private static final long	serialVersionUID	= 1L;

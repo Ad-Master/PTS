@@ -1,17 +1,23 @@
 package pl.grm.pts;
 
-import java.awt.*;
-import java.util.*;
-import java.util.concurrent.*;
+import java.awt.Component;
+import java.util.HashMap;
+import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 
-import javax.swing.*;
+import javax.swing.JTextField;
 
-import pl.grm.pts.core.*;
-import pl.grm.pts.core.fourier.*;
-import pl.grm.pts.core.fourier.util.*;
-import pl.grm.pts.core.misc.*;
+import pl.grm.pts.core.DBConvCore;
+import pl.grm.pts.core.SISCore;
+import pl.grm.pts.core.SignalAnalysisCore;
+import pl.grm.pts.core.SignalDataType;
+import pl.grm.pts.core.fourier.DFTCore;
+import pl.grm.pts.core.fourier.FFTCore;
+import pl.grm.pts.core.misc.Complex;
 import pl.grm.pts.core.misc.Point;
-import pl.grm.pts.tabs.*;
+import pl.grm.pts.core.misc.SimpleVector;
+import pl.grm.pts.core.misc.VectorUtils;
+import pl.grm.pts.tabs.SignalAnalysis;
 
 public class CalcCore {
 	public static CalcCore		instance;

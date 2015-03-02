@@ -1,9 +1,15 @@
 package pl.grm.pts.tabs.components;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.WindowConstants;
 
 public class HGShowResult extends JDialog implements ActionListener {
 	private static final long	serialVersionUID	= 1L;

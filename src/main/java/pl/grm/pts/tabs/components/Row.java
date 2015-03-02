@@ -1,10 +1,17 @@
 package pl.grm.pts.tabs.components;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Component;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class Row {
 	private HashMap<Integer, Component>	cells;

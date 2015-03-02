@@ -1,17 +1,32 @@
 package pl.grm.pts.tabs;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import java.util.*;
-import java.util.concurrent.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
 
-import pl.grm.pts.*;
-import pl.grm.pts.core.*;
+import pl.grm.pts.CalcCore;
+import pl.grm.pts.Tab;
+import pl.grm.pts.core.SignalDataType;
 
 public class SignalAnalysis extends JPanel implements Tab {
 	private static final long						serialVersionUID	= 1L;

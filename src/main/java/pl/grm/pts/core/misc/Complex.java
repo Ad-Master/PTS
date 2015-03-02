@@ -1,4 +1,5 @@
-package pl.grm.pts.core.fourier.util;
+package pl.grm.pts.core.misc;
+
 
 public class Complex {
 	private double	real;

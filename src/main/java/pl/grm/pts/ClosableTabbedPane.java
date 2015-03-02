@@ -1,9 +1,17 @@
 package pl.grm.pts;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-import javax.swing.*;
+import javax.swing.JTabbedPane;
 
 public class ClosableTabbedPane extends JTabbedPane {
 	private class TabCloseUI implements MouseListener, MouseMotionListener {

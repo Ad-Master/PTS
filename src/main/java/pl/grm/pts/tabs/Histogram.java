@@ -1,14 +1,23 @@
 package pl.grm.pts.tabs;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import java.util.concurrent.*;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.SortedSet;
+import java.util.concurrent.ExecutionException;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 
-import pl.grm.pts.*;
-import pl.grm.pts.tabs.components.*;
+import pl.grm.pts.Tab;
+import pl.grm.pts.tabs.components.HGShowResult;
+import pl.grm.pts.tabs.components.Table;
 
 public class Histogram extends JPanel implements Tab {
 	private static final long	serialVersionUID	= 1L;

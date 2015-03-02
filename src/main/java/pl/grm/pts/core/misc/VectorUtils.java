@@ -1,8 +1,8 @@
 package pl.grm.pts.core.misc;
 
-import java.util.*;
-
-import pl.grm.pts.core.fourier.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
 
 public class VectorUtils {
 	
