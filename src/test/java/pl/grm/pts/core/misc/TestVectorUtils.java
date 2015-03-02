@@ -1,14 +1,11 @@
-package pl.grm.pts;
+package pl.grm.pts.core.misc;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.util.*;
+import java.util.Vector;
 
-import org.junit.*;
-
-import pl.grm.pts.core.fourier.util.*;
-import pl.grm.pts.core.misc.*;
+import org.junit.Test;
 
 public class TestVectorUtils {
 	

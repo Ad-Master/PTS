@@ -1,6 +1,7 @@
 package pl.grm.pts.core.misc;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Vector;
 
 public class SimpleVector {
 	private double[]	values;

@@ -1,10 +1,10 @@
 package pl.grm.pts.tabs;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
-import pl.grm.pts.*;
+import pl.grm.pts.Tab;
 
 public class HarmonicDistribution extends JPanel implements Tab {
 	public HarmonicDistribution() {

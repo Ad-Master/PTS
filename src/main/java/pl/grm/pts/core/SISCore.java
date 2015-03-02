@@ -1,11 +1,14 @@
 package pl.grm.pts.core;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Component;
+import java.util.HashMap;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 
-import pl.grm.pts.core.misc.*;
+import pl.grm.pts.core.misc.SimpleVector;
+import pl.grm.pts.core.misc.VectorUtils;
 
 public class SISCore {
 	

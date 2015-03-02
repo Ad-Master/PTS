@@ -1,12 +1,23 @@
 package pl.grm.pts.tabs;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
 
-import pl.grm.pts.*;
+import pl.grm.pts.CalcCore;
+import pl.grm.pts.Tab;
 
 public class SignalInSignal extends JPanel implements Tab {
 	private static final long	serialVersionUID	= 1L;

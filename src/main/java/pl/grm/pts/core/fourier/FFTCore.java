@@ -1,8 +1,8 @@
 package pl.grm.pts.core.fourier;
 
-import java.util.*;
+import java.util.Vector;
 
-import pl.grm.pts.core.fourier.util.*;
+import pl.grm.pts.core.misc.Complex;
 
 public class FFTCore {
 	

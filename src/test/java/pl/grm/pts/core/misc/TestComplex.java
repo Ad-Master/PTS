@@ -1,6 +1,6 @@
-package pl.grm.pts;
+package pl.grm.pts.core.misc;
 
-import org.junit.*;
+import org.junit.Test;
 
 public class TestComplex {
 	

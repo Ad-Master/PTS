@@ -1,10 +1,12 @@
 package pl.grm.pts.tabs;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import pl.grm.pts.*;
+import pl.grm.pts.Tab;
 
 public class Alaw extends JPanel implements Tab {
 	private static final long	serialVersionUID	= 1L;

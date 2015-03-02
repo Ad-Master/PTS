@@ -1,8 +1,16 @@
 package pl.grm.pts;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
-import pl.grm.pts.tabs.*;
+import pl.grm.pts.tabs.Alaw;
+import pl.grm.pts.tabs.DBConverter;
+import pl.grm.pts.tabs.DFT;
+import pl.grm.pts.tabs.FFT;
+import pl.grm.pts.tabs.HarmonicDistribution;
+import pl.grm.pts.tabs.Histogram;
+import pl.grm.pts.tabs.Mlaw;
+import pl.grm.pts.tabs.SignalAnalysis;
+import pl.grm.pts.tabs.SignalInSignal;
 
 public enum TabType {
 	DBCONVERT(
